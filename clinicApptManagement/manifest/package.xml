@@ -51,6 +51,10 @@
         <name>FlowDefinition</name>
     </types>
     <types>
+        <members>*</members>
+        <name>Flow</name>
+    </types>
+    <types>
         <members>Contact.*</members>
         <members>Patient_Appointment__c.*</members>
         <name>QuickAction</name>
