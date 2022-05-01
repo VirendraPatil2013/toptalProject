@@ -1,0 +1,15 @@
+<aura:component controller="AppointmentManagerController" implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <!--<ltng:require styles="{!$Resource.modalCSS}"/>-->
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:attribute name="patientId" type="String"/>
+    <aura:html tag="style">
+        .slds-modal__container{
+        max-width: 80rem !important;
+        width:80% !important;
+        }
+    </aura:html>
+    <c:PageHeader title="Reschedule Appointment" iconName="standard:service_appointment" subheader="Department : Cardiology"/>
+    <lightning:card>
+        <c:AppointmentDateForm patientId="{!v.patientId}"/>
+    </lightning:card>
+</aura:component>

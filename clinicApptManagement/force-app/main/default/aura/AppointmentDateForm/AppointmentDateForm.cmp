@@ -1,0 +1,72 @@
+<aura:component controller = "AppointmentManagerController" implements="force:hasRecordId">
+    <aura:attribute name="timeSlots" type="List"/>
+    <!--<aura:attribute name="value" type="String" default=""/>-->
+    <aura:attribute name="physicians" type="List"/>
+    <aura:attribute name="options" type="List" access="PRIVATE"/>
+    <aura:attribute name="selDepartmentId" type="String" access="PRIVATE"/>
+    <aura:attribute name="patientId" type="String" />
+    <aura:attribute name="bookingPrice" type="String" />
+    <aura:attribute name="aptDate" type="Date"/>
+    <aura:attribute name="selectedTimeSlot" type="String"/>
+    <aura:attribute name="timeSlotType" type="String"/>
+    
+    <aura:handler name="bookApptEvent" event="c:bookApptEvent"
+                  action="{!c.handleBookAppt}" phase="capture" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <c:PageHeader title="Boon An Appointment" iconName="standard:service_appointment"/>
+    
+    <div class="slds-grid slds-wrap">
+        <div class="slds-size_1-of-1">
+            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                <lightning:select name="departmentId" label="Department :" aura:id="departmentId" value="{!v.selDepartmentId}" onchange="{!c.onDepartmentChg}">
+                    <option text="Select Department" value="0"></option>
+                    <aura:iteration items="{!v.options}" var="option">
+                        <option text="{!option.Name}" value="{!option.Id}" />
+                    </aura:iteration>
+                </lightning:select>
+                <lightning:input type="date" id="stacked-input-id-01" label="Appointment Date" value="{!v.aptDate}" placeholder="Placeholder text…" onchange="{!c.onChangeEvent}"/>
+            </div>
+        </div>
+    </div>
+    
+    <div class="slds-grid slds-wrap slds-m-top_large">
+        <div class="slds-size_1-of-1">
+            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                <div class="slds-align_absolute-center">
+                    <lightning:button name="morning" onclick="{!c.onchangeslotType}"> <img src="{!$Resource.morning}" /></lightning:button>
+                    <lightning:button name="afternoon" onclick="{!c.onchangeslotType}"><img src="{!$Resource.afternoon}" /></lightning:button>
+                    <lightning:button name="evening" onclick="{!c.onchangeslotType}"><img src="{!$Resource.evening}" /></lightning:button>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+    <div class="slds-grid slds-wrap slds-m-top_large">
+        <div class="slds-size_1-of-1">
+            <div class="slds-grid slds-wrap slds-align_absolute-center">
+                <lightning:radioGroup name="Time Slot"
+                                      label="Available Time Slot"
+                                      options="{! v.timeSlots }"
+                                      value="{! v.selectedTimeSlot }"
+                                      type="button"
+                                      onchange = "{!c.onSlotSelection}"
+                                      required="true"/>
+                
+                
+                
+            </div>
+        </div>
+    </div>
+    <lightning:card>
+        <aura:if isTrue="{!not(empty(v.physicians))}">
+            <c:PhysicianList physicians="{!v.physicians}" bookingPrice="{!v.bookingPrice}"/>
+            <aura:set attribute="else">
+                <h1> For selected timeslot no Physicians are available. Please select another timeslot or date.</h1>
+            </aura:set>
+        </aura:if>
+        
+    </lightning:card>
+    
+</aura:component>

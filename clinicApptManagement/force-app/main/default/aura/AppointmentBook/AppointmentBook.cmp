@@ -1,0 +1,13 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+    <!--<ltng:require styles="{!$Resource.modalCSS}"/>-->
+    <aura:html tag="style">
+        .slds-modal__container{
+        max-width: 80rem !important;
+        width:80% !important;
+        }
+    </aura:html>
+    
+    <lightning:card>
+        <c:AppointmentDateForm patientId="{!v.recordId}"/>
+    </lightning:card>
+</aura:component>

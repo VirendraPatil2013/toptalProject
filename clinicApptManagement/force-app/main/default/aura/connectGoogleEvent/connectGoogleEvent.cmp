@@ -1,0 +1,12 @@
+<aura:component controller="GoogleEvents"  implements="lightning:isUrlAddressable,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction" access="global" >
+  	<aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="accessToken" type="String" />
+    <aura:attribute name="access" type="String" />
+    <lightning:card title="SalesforceCodex Fitness">
+    	<lightning:button variant="brand" label="Authorize Google Fit" title="Authorize Google Fit" onclick="{! c.doAuth }" />
+        <p>
+            {!access}
+        </p>
+   	</lightning:card>
+
+</aura:component>
