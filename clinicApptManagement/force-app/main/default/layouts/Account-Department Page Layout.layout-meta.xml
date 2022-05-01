@@ -43,12 +43,6 @@
     </relatedContent>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>Contact.CNTC_FIRST_NAME</fields>
-        <fields>Contact.NAME</fields>
-        <relatedList>Department_Physician__c.Department__c</relatedList>
-    </relatedLists>
-    <relatedLists>
-        <fields>NAME</fields>
         <fields>Time__c</fields>
         <relatedList>Time_Slot__c.Department__c</relatedList>
     </relatedLists>

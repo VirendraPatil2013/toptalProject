@@ -67,13 +67,15 @@
     onDepartmentChg: function(component,event,helper){
         var selectedVal = component.get("v.selDepartmentId");
         var a = component.get("v.options");
-        console.log(selectedVal);
+        component.set("v.timeSlots",[]);
+        component.set("v.physicians",[]);
         for(var i=0;i<a.length;i++){
             if(a[i].Id == selectedVal){
                 component.set("v.bookingPrice",a[i].Appointment_Price__c);
                break;
             }
         }
+        
     },
     onchangeslotType:function(component,event,helper){
         var type = event.getSource().get("v.name");

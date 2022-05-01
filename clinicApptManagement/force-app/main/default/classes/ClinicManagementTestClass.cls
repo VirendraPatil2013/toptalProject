@@ -26,6 +26,7 @@ private class ClinicManagementTestClass {
         physician.LastName = 'Physician';
         physician.FirstName = 'Test';
         physician.Email = 'physician@test.com.invalid';
+        physician.AccountId = accounts[0].Id;
         physician.RecordTypeId = Schema.sObjectType.Contact.getRecordTypeInfosByDeveloperName().get('Physician').getRecordTypeId();
         insert physician;
         List<Department_Physician__c> deptPhys = new List<Department_Physician__c>();

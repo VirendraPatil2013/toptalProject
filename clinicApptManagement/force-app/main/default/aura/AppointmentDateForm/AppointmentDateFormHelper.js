@@ -1,5 +1,6 @@
 ({
     getTimeSlot: function(component,event){
+        component.set("v.physicians",[]);
         var action = component.get("c.getTimeSlot");
         var deptId = component.get("v.selDepartmentId");
         var timeSlotType = component.get("v.timeSlotType");

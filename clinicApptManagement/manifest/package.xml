@@ -94,6 +94,17 @@
         <members>*</members>
         <name>AuthProvider</name>
     </types>
+    <types>
+        <members>Receptionist</members>
+        <members>Clinic Manager User</members>
+        <name>Profile</name>
+    </types>
+    <types>
+        <members>CEO</members>
+        <members>Clinic_Manager</members>
+        <members>Receptionist</members>
+        <name>Profile</name>
+    </types>
 
     <version>54.0</version>
 </Package>

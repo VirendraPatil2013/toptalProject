@@ -75,8 +75,8 @@ public without sharing class AppointmentManagerController {
         DateTime aptDt = DateTime.newInstance(ApptDate.year(),ApptDate.month(),ApptDate.day(),hr,min,0);
         Id recTypPhyId = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get('Physician').getRecordTypeId();
         Set<Id> phyIds = new Set<Id>();
-        for(Department_Physician__c dP : [SELECT ID,Physician__c FROM Department_Physician__c WHERE Department__c =: deptId]){
-            phyIds.add(dP.Physician__c);
+        for(Contact dP : [SELECT ID FROM Contact WHERE AccountId =: deptId]){
+            phyIds.add(dP.Id);
         }
         
         Map<Id,Contact> mPhysicians = new Map<Id,Contact>([SELECT ID,Name,Title,Description,Salutation FROM Contact WHERE RecordTypeId =:recTypPhyId AND Id =:phyIds]);
