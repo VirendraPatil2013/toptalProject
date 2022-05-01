@@ -19,7 +19,7 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentChartTheme>dark</componentChartTheme>
-                <componentType>Donut</componentType>
+                <componentType>ColumnStacked</componentType>
                 <decimalPrecision>0</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <drillEnabled>false</drillEnabled>
@@ -27,9 +27,14 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>FK_NAME</groupingColumn>
+                <groupingColumn>Patient_Appointment__c.Status__c</groupingColumn>
                 <groupingSortProperties>
                     <groupingSorts>
                         <groupingLevel>g1</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
+                    <groupingSorts>
+                        <groupingLevel>g2</groupingLevel>
                         <sortOrder>a</sortOrder>
                     </groupingSorts>
                 </groupingSortProperties>
@@ -38,8 +43,7 @@
                 <maxValuesDisplayed>6</maxValuesDisplayed>
                 <report>ClinicManagementReports/Number_Of_Appointments_by_Department_cP4</report>
                 <showPercentage>false</showPercentage>
-                <showTotal>true</showTotal>
-                <showValues>true</showValues>
+                <showValues>false</showValues>
                 <sortBy>RowLabelAscending</sortBy>
                 <useReportChart>false</useReportChart>
             </dashboardComponent>
@@ -57,7 +61,7 @@
                     <column>RowCount</column>
                 </chartSummary>
                 <componentChartTheme>dark</componentChartTheme>
-                <componentType>Column</componentType>
+                <componentType>ColumnStacked</componentType>
                 <decimalPrecision>0</decimalPrecision>
                 <displayUnits>Auto</displayUnits>
                 <drillEnabled>false</drillEnabled>
@@ -65,14 +69,19 @@
                 <enableHover>false</enableHover>
                 <expandOthers>false</expandOthers>
                 <groupingColumn>Contact.Patient_Appointments1__r$Physician_Name__c</groupingColumn>
+                <groupingColumn>Contact.Patient_Appointments1__r$Status__c</groupingColumn>
                 <groupingSortProperties>
                     <groupingSorts>
                         <groupingLevel>g1</groupingLevel>
                         <sortOrder>a</sortOrder>
                     </groupingSorts>
+                    <groupingSorts>
+                        <groupingLevel>g2</groupingLevel>
+                        <sortOrder>a</sortOrder>
+                    </groupingSorts>
                 </groupingSortProperties>
                 <header>Number of Appointment by Physicians</header>
-                <legendPosition>Bottom</legendPosition>
+                <legendPosition>Right</legendPosition>
                 <report>ClinicManagementReports/Number_of_Appointment_by_Physicians_jmG</report>
                 <showPercentage>false</showPercentage>
                 <showValues>false</showValues>
@@ -81,6 +90,31 @@
             </dashboardComponent>
             <rowIndex>0</rowIndex>
             <rowSpan>10</rowSpan>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>0</columnIndex>
+            <dashboardComponent>
+                <autoselectColumnsFromReport>true</autoselectColumnsFromReport>
+                <chartAxisRange>Auto</chartAxisRange>
+                <componentChartTheme>dark</componentChartTheme>
+                <componentType>Bar</componentType>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <groupingSortProperties/>
+                <header>Appointments by Status</header>
+                <report>ClinicManagementReports/Appointments_by_Status_BmB</report>
+                <showPercentage>false</showPercentage>
+                <showPicturesOnCharts>false</showPicturesOnCharts>
+                <showValues>false</showValues>
+                <sortBy>RowLabelAscending</sortBy>
+                <useReportChart>true</useReportChart>
+            </dashboardComponent>
+            <rowIndex>10</rowIndex>
+            <rowSpan>8</rowSpan>
         </dashboardGridComponents>
         <numberOfColumns>12</numberOfColumns>
         <rowHeight>36</rowHeight>
