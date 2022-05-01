@@ -14,8 +14,8 @@ public without sharing class AppointmentManagerController {
         Set<Id> phyIds = new Set<Id>();
         List<DateTime> aptDtTm = new List<DateTime>();
         Time currentTime = System.now().time();
-        for(Department_Physician__c deptPhy : [SELECT ID,Department__c,Physician__c FROM Department_Physician__c WHERE Department__c =: deptId]){
-            phyIds.add(deptPhy.Physician__c);
+        for(Contact deptPhy : [SELECT ID,AccountId FROM Contact WHERE AccountId =: deptId]){
+            phyIds.add(deptPhy.Id);
         }
         
         List<Time_Slot__c> lstTS = [SELECT ID,Time__c,Type__c FROM Time_Slot__c WHERE Department__c=:deptId AND Type__c =: timeSlotType ORDER BY Time__c ASC];
@@ -29,14 +29,14 @@ public without sharing class AppointmentManagerController {
         }
         Map<DateTime,Integer> mAptCounter = new Map<DateTime,Integer>();
         for(Event pApt : [SELECT StartDateTime, Id FROM Event WHERE StartDateTime =: aptDtTm AND Physician__c =: phyIds
-                                           Order by StartDateTime]){
-                                               if(!mAptCounter.containsKey(pApt.StartDateTime)){
-                                                   mAptCounter.put(pApt.StartDateTime,0);
-                                               }
-                                               integer iCount = mAptCounter.get(pApt.StartDateTime);
-                                               iCount++;
-                                               mAptCounter.put(pApt.StartDateTime,iCount);
-                                           }
+                          Order by StartDateTime]){
+                              if(!mAptCounter.containsKey(pApt.StartDateTime)){
+                                  mAptCounter.put(pApt.StartDateTime,0);
+                              }
+                              integer iCount = mAptCounter.get(pApt.StartDateTime);
+                              iCount++;
+                              mAptCounter.put(pApt.StartDateTime,iCount);
+                          }
         
         for(DateTime dt : aptDtTm){
             if(mAptCounter.containsKey(dt)){
@@ -115,7 +115,12 @@ public without sharing class AppointmentManagerController {
     public static String createAppointment(String departmentId,String patientId,String physicianId,Date apptDate,String apptTm){
         //Create Event Record
         Set<Id> conIds = new Set<Id>{patientId,physicianId};
-        Map<Id,Contact> contacts = new Map<Id,Contact>([SELECT ID,name,Email,Phone FROM Contact WHERE Id =:conIds ]);
+            Map<Id,Contact> contacts = new Map<Id,Contact>([SELECT ID,name,Email,Phone FROM Contact WHERE Id =:conIds ]);
+        String pubCalId = '';
+        if(!Test.isRunningTest()){
+            PublicCalendar__c pubCal = PublicCalendar__c.getInstance('PublicCalendar');
+            pubCalId = pubCal.CalendarId__c;
+        }
         
         DateTime aptDT = generateDateTime(apptDate,apptTm);
         Patient_Appointment__c pApt = createAppointmentRecord(departmentId,aptDT,patientId,physicianId);
@@ -127,6 +132,10 @@ public without sharing class AppointmentManagerController {
         evt.WhoId = patientId;
         evt.Physician__c = physicianId;
         evt.Appointment_Number__c = pApt.Id;
+        if(String.isNotBlank(pubCalId)){
+            evt.OwnerId=pubCalId;
+        }
+        
         
         try{
             insert evt;

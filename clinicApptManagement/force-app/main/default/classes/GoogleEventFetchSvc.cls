@@ -74,6 +74,13 @@ public without sharing class GoogleEventFetchSvc {
             if(mGEvt.keySet().size()>0){
                 List<Event> events = new List<Event>();
                 Id recTypeGCalId = Schema.sObjectType.Event.getRecordTypeInfosByDeveloperName().get('Google_Calendar').getRecordTypeId();
+                String pubCalId = '';
+                if(!Test.isRunningTest()){
+                    PublicCalendar__c pubCal = PublicCalendar__c.getInstance('PublicCalendar');
+                    pubCalId = pubCal.CalendarId__c;
+                }
+                
+                
                 for(String gEvtId : mGEvt.keySet()){
                     Event evt = new Event();
                     evt.Subject = mGEvt.get(gEvtId).summary;
@@ -82,6 +89,11 @@ public without sharing class GoogleEventFetchSvc {
                     evt.Google_Event_Id__c = mGEvt.get(gEvtId).evtId;
                     evt.RecordTypeId=recTypeGCalId;
                     evt.Physician__c = PhyId;
+                    
+                    if(String.isNotBlank(pubCalId)){
+                        evt.OwnerId=pubCalId;
+                    }
+                    
                     events.add(evt);
                 }
                 if(events.size()>0){

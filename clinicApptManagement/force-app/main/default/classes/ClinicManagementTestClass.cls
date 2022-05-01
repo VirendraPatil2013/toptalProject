@@ -2,6 +2,7 @@
 private class ClinicManagementTestClass {
     @testSetup
     private static void setup(){
+        
         List<String> specialization = new List<String>();
         specialization.add('Cardiology');
         specialization.add('Endocrinology');
@@ -63,9 +64,10 @@ private class ClinicManagementTestClass {
         Date aptDate = System.today().addDays(1);
         String aptTime = '08:00';
         Test.setMock(HttpCalloutMock.class, new GoogleCreateEventMock());
-        AppointmentManagerController.createAppointment(String.ValueOf(cardio.Id), String.ValueOf(patient.Id), String.ValueOf(physician.Id), aptDate, aptTime);
+        Id aptId = AppointmentManagerController.createAppointment(String.ValueOf(cardio.Id), String.ValueOf(patient.Id), String.ValueOf(physician.Id), aptDate, aptTime);
         AppointmentManagerController.getTimeSlot(String.ValueOf(cardio.Id), 'Morning', aptDate);
         AppointmentManagerController.getAvailablePhysician('08:00', aptDate, String.ValueOf(cardio.Id));
+        AppointmentManagerController.getPatientRecord(aptId);
         
         
     }

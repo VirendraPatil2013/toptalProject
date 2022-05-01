@@ -697,6 +697,24 @@
     </profileActionOverrides>
     <profileActionOverrides>
         <actionName>View</actionName>
+        <content>Contact_Record_Page</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.Patient</recordType>
+        <type>Flexipage</type>
+        <profile>Receptionist</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Contact_Record_Page</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.Patient</recordType>
+        <type>Flexipage</type>
+        <profile>Receptionist</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
         <content>Contact_Record_Page1</content>
         <formFactor>Large</formFactor>
         <pageOrSobjectType>Contact</pageOrSobjectType>
@@ -1378,6 +1396,24 @@
         <recordType>Contact.Physician</recordType>
         <type>Flexipage</type>
         <profile>Admin</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Contact_Record_Page1</content>
+        <formFactor>Small</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.Physician</recordType>
+        <type>Flexipage</type>
+        <profile>Receptionist</profile>
+    </profileActionOverrides>
+    <profileActionOverrides>
+        <actionName>View</actionName>
+        <content>Contact_Record_Page1</content>
+        <formFactor>Large</formFactor>
+        <pageOrSobjectType>Contact</pageOrSobjectType>
+        <recordType>Contact.Physician</recordType>
+        <type>Flexipage</type>
+        <profile>Receptionist</profile>
     </profileActionOverrides>
     <tabs>standard-Account</tabs>
     <tabs>standard-Contact</tabs>
