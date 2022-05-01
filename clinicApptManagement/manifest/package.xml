@@ -11,6 +11,7 @@
         <members>GoogleDeleteEventMock</members>
         <members>GoogleCreateEventMock</members>
         <members>PatientAppointmentUtil</members>
+        <members>fetchGoogleInviteDaily</members>
         <name>ApexClass</name>
     </types>
     <types>
@@ -84,5 +85,11 @@
         <members>*</members>
         <name>flexipage</name>
     </types>
+
+    <types>
+        <members>*</members>
+        <name>AuthProvider</name>
+    </types>
+
     <version>54.0</version>
 </Package>

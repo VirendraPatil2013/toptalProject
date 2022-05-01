@@ -4,7 +4,7 @@ private class ClinicManagementTestClass {
     private static void setup(){
         List<String> specialization = new List<String>();
         specialization.add('Cardiology');
-        specialization.add('Endocrinology');
+        specialization.add('Endocrinology'); 
         specialization.add('Rheumatology');
         specialization.add('General Practice');
         List<Account> accounts = new List<Account>();
@@ -110,8 +110,10 @@ private class ClinicManagementTestClass {
     @isTest
     private static void testGoogleEventFetchSvc(){
         Test.startTest();
+        Contact physician = [SELECT ID,Unique_Id__c FROM Contact WHERE RecordType.Name='Physician' LIMIT 1];
         Test.setMock(HttpCalloutMock.class, new GoogelEventFetchMock());
-        GoogleEventFetchSvc.fetchEvents();
+        fetchGoogleInviteDaily cls = new fetchGoogleInviteDaily(physician.id);
+        System.schedule('Testing Job', '0 0 0/1 1/1 * ? *', cls);
         Test.stopTest();
     }
     

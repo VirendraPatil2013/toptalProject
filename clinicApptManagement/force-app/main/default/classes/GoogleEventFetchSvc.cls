@@ -1,11 +1,11 @@
 public without sharing class GoogleEventFetchSvc {
-    public static void fetchEvents(){
+    public static void fetchEvents(String namedCred,Id PhyId){
         DateTime myDateTime = DateTime.newInstance(System.today(),System.now().time());
         String formatted = myDateTime.formatGMT('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
         system.debug(formatted);
         Http h = new Http();
         HttpRequest req = new HttpRequest();
-        req.setEndpoint('callout:CalendarSync/calendar/v3/calendars/primary/events?timeMin='+EncodingUtil.urlEncode(formatted,'UTF-8')); 
+        req.setEndpoint('callout:'+namedCred+'/calendar/v3/calendars/primary/events?timeMin='+EncodingUtil.urlEncode(formatted,'UTF-8')); 
         req.setHeader('Content-Type', 'application/json');
         req.setMethod('GET');
         req.setTimeout(10000);
@@ -79,6 +79,7 @@ public without sharing class GoogleEventFetchSvc {
                     evt.EndDateTime = mGEvt.get(gEvtId).endDt;
                     evt.Google_Event_Id__c = mGEvt.get(gEvtId).evtId;
                     evt.RecordTypeId=recTypeGCalId;
+                    evt.Physician__c = PhyId;
                     events.add(evt);
                 }
                 if(events.size()>0){
