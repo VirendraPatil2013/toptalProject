@@ -4,7 +4,7 @@ private class ClinicManagementTestClass {
     private static void setup(){
         List<String> specialization = new List<String>();
         specialization.add('Cardiology');
-        specialization.add('Endocrinology'); 
+        specialization.add('Endocrinology');
         specialization.add('Rheumatology');
         specialization.add('General Practice');
         List<Account> accounts = new List<Account>();

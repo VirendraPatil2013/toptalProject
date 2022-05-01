@@ -11,4 +11,4 @@
     <sendClientCredentialsInHeader>false</sendClientCredentialsInHeader>
     <sendSecretInApis>true</sendSecretInApis>
     <tokenUrl>https://oauth2.googleapis.com/token</tokenUrl>
-</AuthProvider> 
+</AuthProvider>

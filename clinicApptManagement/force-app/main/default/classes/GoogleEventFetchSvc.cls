@@ -1,4 +1,5 @@
 public without sharing class GoogleEventFetchSvc {
+    @future(callout=true)
     public static void fetchEvents(String namedCred,Id PhyId){
         DateTime myDateTime = DateTime.newInstance(System.today(),System.now().time());
         String formatted = myDateTime.formatGMT('yyyy-MM-dd\'T\'HH:mm:ss.SSSZ');
