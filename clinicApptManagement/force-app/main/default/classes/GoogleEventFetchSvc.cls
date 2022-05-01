@@ -13,11 +13,12 @@ public without sharing class GoogleEventFetchSvc {
         HttpResponse res = h.send(req);
         Map<String,Object> mResponse = (Map<String,Object>)JSON.deserializeUntyped(res.getBody());
         List<String> gEventIds = new List<String>();
-        response gEvt = new response();
+        
         Map<String,response> mGEvt = new Map<String,response>();
         if(mResponse.containsKey('items')){
             List<Object> items = (List<Object>)mResponse.get('items');
             for(Object itm : items){
+                response gEvt = new response();
                 String a = JSON.serialize(itm);
                 Map<String,Object> mItm = (Map<String,Object>)JSON.deserializeUntyped(a);
                 if(mItm.containsKey('id')){

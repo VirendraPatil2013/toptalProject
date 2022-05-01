@@ -9,22 +9,25 @@
                 <lightning:layoutItem padding="around-small" class="slds-box" size="6" smallDeviceSize="12" mediumDeviceSize="6" largeDeviceSize="6">
                     <article class="slds-tile slds-media">
                         <div class="slds-media__figure">
-                            <lightning:avatar varian="circle" size="medium"  src="https://www.lightningdesignsystem.com/assets/images/avatar2.jpg"/>
+                            <lightning:avatar varian="circle" size="large"  src="https://www.lightningdesignsystem.com/assets/images/avatar2.jpg"/>
                         </div>
                         <div class="slds-media__body">
-                            <h3 class="slds-tile__title slds-truncate" title="{!physician.name}">
-                                <a href="#">{!physician.Name}</a>
-                            </h3>
+                            <h1 class="slds-tile__title slds-truncate slds-text-heading_medium" title="{!physician.name}">
+                                {!physician.Salutation} {!physician.Name}
+                            </h1>
                             <div class="slds-tile__detail">
                                 <dl class="slds-list_horizontal slds-wrap">
-                                    <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">Specialization:</dt>
-                                    <dd class="slds-item_detail slds-truncate" title="Description for first label">{!physician.Title}</dd>
-                                    <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Second Label">About Physician:</dt>
-                                    <dd class="slds-item_detail slds-truncate" title="Description for second label">{!physician.Description}</dd>
+                                    <dt class="slds-item_label slds-text-color_weak slds-truncate" title="First Label">Fees : </dt>
+                                    <dd class="slds-item_detail slds-truncate" title="Description for first label">$ {!v.bookingPrice}</dd>
+                                    <dt class="slds-item_label slds-text-color_weak slds-truncate" title="Second Label"></dt>
+                                    <dd class="slds-item_detail slds-truncate" title="Description for second label"></dd>
                                 </dl>
                             </div>
                         </div>
-                        <lightning:button variant="brand" onclick="{!c.bookAppointment}" name="{!physician.Id}">Book Appointment<br/>${!v.bookingPrice}</lightning:button>
+                        
+                        <lightning:button variant="brand" onclick="{!c.bookAppointment}" name="{!physician.Id}">Book Appointment</lightning:button>
+                        
+                        
                     </article>
                 </lightning:layoutItem>
             </lightning:layout>

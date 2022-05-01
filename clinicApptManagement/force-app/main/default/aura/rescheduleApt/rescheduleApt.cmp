@@ -8,8 +8,7 @@
         width:80% !important;
         }
     </aura:html>
-    <c:PageHeader title="Reschedule Appointment" iconName="standard:service_appointment" subheader="Department : Cardiology"/>
     <lightning:card>
-        <c:AppointmentDateForm patientId="{!v.patientId}"/>
+        <c:AppointmentDateForm patientId="{!v.patientId}" headerTitle="Reschedule an Appointment"/>
     </lightning:card>
 </aura:component>

@@ -79,7 +79,7 @@ public without sharing class AppointmentManagerController {
             phyIds.add(dP.Physician__c);
         }
         
-        Map<Id,Contact> mPhysicians = new Map<Id,Contact>([SELECT ID,Name,Title,Description FROM Contact WHERE RecordTypeId =:recTypPhyId AND Id =:phyIds]);
+        Map<Id,Contact> mPhysicians = new Map<Id,Contact>([SELECT ID,Name,Title,Description,Salutation FROM Contact WHERE RecordTypeId =:recTypPhyId AND Id =:phyIds]);
         Map<Id,AggregateResult> aggResult = new Map<Id,AggregateResult>([SELECT Physician__c Id, COUNT(ID) FROM Event WHERE Physician__c = :phyIds AND StartDateTime =:aptDt AND Physician__c =:mPhysicians.keySet()
                                                                          GROUP BY Physician__c HAVING COUNT(ID) > 0]);
         List<Contact> retPhysicians = new List<Contact>();
@@ -114,14 +114,15 @@ public without sharing class AppointmentManagerController {
     @AuraEnabled
     public static String createAppointment(String departmentId,String patientId,String physicianId,Date apptDate,String apptTm){
         //Create Event Record
-        Contact patient = [SELECT ID,name,Email,Phone FROM Contact WHERE Id =:patientId LIMIT 1];
+        Set<Id> conIds = new Set<Id>{patientId,physicianId};
+        Map<Id,Contact> contacts = new Map<Id,Contact>([SELECT ID,name,Email,Phone FROM Contact WHERE Id =:conIds ]);
         
         DateTime aptDT = generateDateTime(apptDate,apptTm);
         Patient_Appointment__c pApt = createAppointmentRecord(departmentId,aptDT,patientId,physicianId);
         Event evt = new Event();
-        evt.Subject = 'Appointment : Patient Name : '+patient.Name;
+        evt.Subject = 'Appointment : '+contacts.get(physicianId).Name+' : '+contacts.get(patientId).Name;
         evt.StartDateTime = aptDT;
-        evt.DurationInMinutes = 30;
+        evt.DurationInMinutes = 45;
         evt.WhatId = departmentId;
         evt.WhoId = patientId;
         evt.Physician__c = physicianId;

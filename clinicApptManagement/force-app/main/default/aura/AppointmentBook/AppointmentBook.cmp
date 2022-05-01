@@ -8,6 +8,6 @@
     </aura:html>
     
     <lightning:card>
-        <c:AppointmentDateForm patientId="{!v.recordId}"/>
+        <c:AppointmentDateForm patientId="{!v.recordId}" headerTitle="Schedule an Appointment"/>
     </lightning:card>
 </aura:component>
