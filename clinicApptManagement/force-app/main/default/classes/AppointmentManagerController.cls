@@ -93,6 +93,7 @@ public without sharing class AppointmentManagerController {
         return retPhysicians;
     }
     private static Patient_Appointment__c createAppointmentRecord(String departmentId,DateTime aptDT,String patientId,String physicianId){
+        Account dept = [SELECT ID,Appointment_Price__c FROM Account WHERE id =: departmentId];
         Patient_Appointment__c pApt = new Patient_Appointment__c();
         pApt.Department__c = departmentId;
         pApt.Start_Date_Time__c = aptDT;
@@ -100,6 +101,7 @@ public without sharing class AppointmentManagerController {
         pApt.Patient__c = patientId;
         pApt.Physician__c = physicianId;
         pApt.Status__c = 'Scheduled';
+        pApt.Appointment_Fees__c = dept.Appointment_Price__c;
         try{
             insert pApt;
             

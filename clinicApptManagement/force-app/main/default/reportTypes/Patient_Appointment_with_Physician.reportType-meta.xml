@@ -400,4 +400,12 @@
         </columns>
         <masterLabel>Patient Appointments (Physician)</masterLabel>
     </sections>
+    <sections>
+        <columns>
+            <checkedByDefault>false</checkedByDefault>
+            <field>Appointment_Fees__c</field>
+            <table>Contact.Patient_Appointments1__r</table>
+        </columns>
+        <masterLabel>Patient Appointments</masterLabel>
+    </sections>
 </ReportType>
