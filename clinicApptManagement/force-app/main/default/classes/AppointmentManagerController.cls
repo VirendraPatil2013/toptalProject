@@ -117,10 +117,8 @@ public without sharing class AppointmentManagerController {
         Set<Id> conIds = new Set<Id>{patientId,physicianId};
             Map<Id,Contact> contacts = new Map<Id,Contact>([SELECT ID,name,Email,Phone FROM Contact WHERE Id =:conIds ]);
         String pubCalId = '';
-        if(!Test.isRunningTest()){
-            PublicCalendar__c pubCal = PublicCalendar__c.getInstance('PublicCalendar');
-            pubCalId = pubCal.CalendarId__c;
-        }
+        PublicCal__mdt pubCal = [SELECT CalendarId__c FROM PublicCal__mdt WHERE DeveloperName='PublicCalendar'];
+        pubCalId = pubCal.CalendarId__c;
         
         DateTime aptDT = generateDateTime(apptDate,apptTm);
         Patient_Appointment__c pApt = createAppointmentRecord(departmentId,aptDT,patientId,physicianId);

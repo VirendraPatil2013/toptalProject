@@ -75,10 +75,9 @@ public without sharing class GoogleEventFetchSvc {
                 List<Event> events = new List<Event>();
                 Id recTypeGCalId = Schema.sObjectType.Event.getRecordTypeInfosByDeveloperName().get('Google_Calendar').getRecordTypeId();
                 String pubCalId = '';
-                if(!Test.isRunningTest()){
-                    PublicCalendar__c pubCal = PublicCalendar__c.getInstance('PublicCalendar');
-                    pubCalId = pubCal.CalendarId__c;
-                }
+                
+                PublicCal__mdt pubCal = [SELECT CalendarId__c FROM PublicCal__mdt WHERE DeveloperName='PublicCalendar'];
+                pubCalId = pubCal.CalendarId__c;
                 
                 
                 for(String gEvtId : mGEvt.keySet()){
